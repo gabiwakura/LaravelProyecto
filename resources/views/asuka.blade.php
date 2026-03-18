@@ -449,10 +449,11 @@
 
 
             <div class="hud-details">
-                MODEL: ASUKA_SOHRYU_02<br>
-                STATUS: COMBAT READY<br>
-                LOC: NERV HQ
+                <span id="trans-hud-model">MODEL: ASUKA_SOHRYU_02</span><br>
+                <span id="trans-hud-status">STATUS: COMBAT READY</span><br>
+                <span id="trans-hud-loc">LOC: NERV HQ</span>
             </div>
+
         </section>
     </main>
 
@@ -521,9 +522,11 @@
                 pers_label: "Personalidad",
                 pers_value: "Impulsiva",
                 trait_label: "Rasgo",
-                trait_value: "Orgullosa",
-                unlock: "Desbloquear Interacción",
+                    unlock: "Desbloquear Interacción",
                 lock: "Bloquear Interacción",
+                hud_model: "MODELO: ASUKA_SOHRYU_02",
+                hud_status: "ESTADO: LISTA PARA EL COMBATE",
+                hud_loc: "LOC: NERV HQ",
                 langName: "Español",
                 flag: "https://flagcdn.com/w20/es.png"
             },
@@ -539,10 +542,12 @@
                 trait_value: "Prideful",
                 unlock: "Unlock Interaction",
                 lock: "Lock Interaction",
+                hud_model: "MODEL: ASUKA_SOHRYU_02",
+                hud_status: "STATUS: COMBAT READY",
+                hud_loc: "LOC: NERV HQ",
                 langName: "English",
                 flag: "https://flagcdn.com/w20/us.png"
             },
-
             jp: {
                 subtitle: "EVA-02 パイロット",
                 desc: "エヴァンゲリオン2号機パイロットの第2の適格者。炎のような気性と比類なきシンクロ率を持つ天才。",
@@ -555,6 +560,9 @@
                 trait_value: "プライド",
                 unlock: "操作ロック解除",
                 lock: "操作ロック",
+                hud_model: "モデル: ASUKA_SOHRYU_02",
+                hud_status: "情勢: 戦闘待機中",
+                hud_loc: "場所: ネルフ本部",
                 langName: "日本語",
                 flag: "https://flagcdn.com/w20/jp.png"
             }
@@ -565,6 +573,7 @@
             en: "https://flagcdn.com/w20/us.png",
             jp: "https://flagcdn.com/w20/jp.png"
         };
+
 
 
         function changeLang(lang) {
@@ -580,11 +589,13 @@
             document.getElementById('trans-pers-value').textContent = t.pers_value;
             document.getElementById('trans-trait-label').textContent = t.trait_label;
             document.getElementById('trans-trait-value').textContent = t.trait_value;
+
+            document.getElementById('trans-hud-model').textContent = t.hud_model;
+            document.getElementById('trans-hud-status').textContent = t.hud_status;
+            document.getElementById('trans-hud-loc').textContent = t.hud_loc;
             
             const unlockBtn = document.getElementById('unlock-btn');
             const viewer = document.getElementById('asuka-viewer');
-            
-
 
             if (viewer.hasAttribute('camera-controls')) {
                 unlockBtn.textContent = t.lock;
@@ -596,14 +607,11 @@
             document.getElementById('current-lang').textContent = t.langName;
         }
 
-
-
-
         window.addEventListener('load', () => {
             const currentLang = document.documentElement.lang || 'es';
-            const unlockBtn = document.getElementById('unlock-btn');
-            unlockBtn.textContent = translations[currentLang].unlock;
+            changeLang(currentLang);
         });
+
     </script>
 
 
